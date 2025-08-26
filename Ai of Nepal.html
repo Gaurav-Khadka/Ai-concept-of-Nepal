@@ -1,0 +1,3128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepal's AI Future - Innovation Starts Here | Nepal AI Initiative</title>
+    <meta name="description" content="Experience Nepal's transformative AI journey through immersive parallax design, intelligent chatbot assistance, and personalized learning paths. Discover opportunities in healthcare, education, agriculture, and technology.">
+    <meta name="keywords" content="Nepal AI, artificial intelligence Nepal, AI chatbot Nepal, parallax design, interactive AI platform, Nepal technology innovation">
+    <meta name="author" content="Gaurav Khadka">
+    <meta property="og:title" content="Nepal's AI Future - Advanced Interactive Platform">
+    <meta property="og:description" content="Revolutionary AI platform featuring parallax scrolling, intelligent chatbot, and immersive experiences showcasing Nepal's AI transformation.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nepalai.org">
+    <link rel="canonical" href="https://nepalai.org">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏔️</text></svg>">
+    
+    <!-- Advanced Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts for Nepali Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Nepali-Inspired Color Palette */
+            --nepal-red: #dc143c;
+            --nepal-blue: #003893;
+            --himalaya-white: #f8fafc;
+            --everest-gray: #64748b;
+            --rhododendron-pink: #ec4899;
+            --forest-green: #059669;
+            --sunrise-gold: #f59e0b;
+            --prayer-flag-blue: #3b82f6;
+            
+            /* Primary Colors */
+            --primary-color: var(--forest-green);
+            --secondary-color: var(--prayer-flag-blue);
+            --accent-color: var(--sunrise-gold);
+            --nepal-gradient: linear-gradient(135deg, var(--nepal-red), var(--nepal-blue));
+            --himalaya-gradient: linear-gradient(135deg, var(--himalaya-white), #e2e8f0);
+            --forest-gradient: linear-gradient(135deg, var(--forest-green), #047857);
+            
+            /* Dark Mode Colors */
+            --dark-bg: #0f172a;
+            --dark-surface: #1e293b;
+            --dark-text: #f1f5f9;
+            
+            /* Typography */
+            --font-primary: 'Inter', 'Noto Sans Devanagari', sans-serif;
+            --font-nepali: 'Noto Sans Devanagari', 'Inter', sans-serif;
+            
+            /* Spacing & Effects */
+            --border-radius: 20px;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-strong: 0 20px 50px rgba(0, 0, 0, 0.15);
+            --shadow-nepal: 0 15px 40px rgba(220, 20, 60, 0.2);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --parallax-speed: 0.5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--everest-gray);
+            overflow-x: hidden;
+            background: var(--himalaya-white);
+            transition: var(--transition);
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        body.dark-mode .hero {
+            background: linear-gradient(135deg, 
+                rgba(15, 23, 42, 0.95), 
+                rgba(30, 58, 138, 0.8), 
+                rgba(220, 20, 60, 0.6));
+        }
+
+        body.dark-mode .section-bg-light {
+            background: var(--dark-surface);
+        }
+
+        body.dark-mode .card,
+        body.dark-mode .feature-card,
+        body.dark-mode .milestone-card {
+            background: var(--dark-surface);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Advanced Loading Screen with Nepali Elements */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--nepal-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+
+        .loading-logo {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .loading-text {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-family: var(--font-nepali);
+        }
+
+        .loading-subtext {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+        }
+
+        .loading-progress {
+            width: 400px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .loading-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--sunrise-gold), var(--himalaya-white));
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .loading-prayer-flags {
+            position: absolute;
+            top: 20%;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(90deg, 
+                var(--nepal-red) 0%, var(--nepal-red) 20%,
+                var(--prayer-flag-blue) 20%, var(--prayer-flag-blue) 40%,
+                var(--sunrise-gold) 40%, var(--sunrise-gold) 60%,
+                var(--forest-green) 60%, var(--forest-green) 80%,
+                var(--rhododendron-pink) 80%, var(--rhododendron-pink) 100%);
+            opacity: 0.3;
+            animation: wave 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.2); }
+        }
+
+        /* Sticky Navigation with Parallax Effect */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(0);
+        }
+
+        header.scrolled {
+            background: rgba(15, 23, 42, 0.98);
+            padding: 0.75rem 0;
+            box-shadow: var(--shadow-strong);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            font-family: var(--font-nepali);
+        }
+
+        .logo-icon {
+            font-size: 2.2rem;
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.5));
+        }
+
+        .logo-text {
+            background: var(--forest-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.75rem 1.25rem;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--forest-gradient);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        nav a:hover::before,
+        nav a.active::before {
+            left: 0;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        /* Immersive Parallax Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, 
+                rgba(15, 23, 42, 0.9), 
+                rgba(30, 58, 138, 0.7), 
+                rgba(220, 20, 60, 0.6));
+        }
+
+        .hero-parallax-bg {
+            position: absolute;
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="mountains" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse"><polygon points="0,200 50,100 100,150 150,50 200,200" fill="rgba(16,185,129,0.1)"/></pattern></defs><rect width="1000" height="1000" fill="url(%23mountains)"/></svg>') repeat;
+            animation: parallaxFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes parallaxFloat {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(-10px) translateX(-5px); }
+            75% { transform: translateY(-30px) translateX(15px); }
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .hero-3d-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            padding: 2rem;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideInUp 1.2s ease-out 0.5s forwards;
+            background: linear-gradient(135deg, #ffffff, var(--forest-green), var(--sunrise-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 1.2s ease-out 1s forwards;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .hero-nepali-text {
+            font-family: var(--font-nepali);
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: slideInUp 1.2s ease-out 1.5s forwards;
+        }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeIn 1.2s ease-out 2s forwards;
+        }
+
+        .hero-stat {
+            text-align: center;
+            color: white;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .hero-stat:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .hero-stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--sunrise-gold);
+            display: block;
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+
+        .hero-stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeIn 1.2s ease-out 2.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            position: relative;
+            overflow: hidden;
+            font-family: var(--font-primary);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--forest-gradient);
+            color: white;
+            box-shadow: var(--shadow-nepal);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px) scale(1.05);
+            border-color: var(--sunrise-gold);
+        }
+
+        /* Parallax Sections with Scroll Triggers */
+        .parallax-section {
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 2rem;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            background-size: cover;
+            background-position: center;
+            will-change: transform;
+        }
+
+        .section-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            background: var(--forest-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--everest-gray);
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        /* Advanced CSS Grid Layouts */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .grid-container-large {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--forest-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            display: block;
+            filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.3));
+        }
+
+        .feature-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--dark-bg);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-description {
+            color: var(--everest-gray);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        /* Interactive Timeline with Parallax */
+        .timeline-section {
+            background: var(--himalaya-gradient);
+            padding: 8rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-parallax {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="100" cy="100" r="2" fill="rgba(16,185,129,0.1)"/><circle cx="300" cy="200" r="1.5" fill="rgba(59,130,246,0.1)"/><circle cx="500" cy="150" r="2.5" fill="rgba(245,158,11,0.1)"/><circle cx="700" cy="250" r="1" fill="rgba(220,20,60,0.1)"/><circle cx="900" cy="180" r="2" fill="rgba(16,185,129,0.1)"/></svg>') repeat;
+            opacity: 0.5;
+            animation: timelineFloat 15s linear infinite;
+        }
+
+        @keyframes timelineFloat {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-200px); }
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--forest-gradient);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .milestone {
+            position: relative;
+            margin-bottom: 4rem;
+            width: 50%;
+        }
+
+        .milestone:nth-child(odd) {
+            left: 0;
+            padding-right: 4rem;
+        }
+
+        .milestone:nth-child(even) {
+            left: 50%;
+            padding-left: 4rem;
+        }
+
+        .milestone-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .milestone-card:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .milestone-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: var(--forest-gradient);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 0 4px white, 0 0 0 8px var(--forest-green);
+        }
+
+        .milestone:nth-child(odd) .milestone-card::before {
+            right: -4rem;
+        }
+
+        .milestone:nth-child(even) .milestone-card::before {
+            left: -4rem;
+        }
+
+        .milestone-year {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--forest-green);
+            margin-bottom: 1rem;
+        }
+
+        .milestone-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--dark-bg);
+            margin-bottom: 1rem;
+        }
+
+        .milestone-description {
+            color: var(--everest-gray);
+            line-height: 1.6;
+        }
+
+        /* Interactive Map Section */
+        .map-section {
+            padding: 8rem 2rem;
+            background: var(--dark-bg);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-parallax {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path d="M100,100 Q200,50 300,100 T500,100 T700,100 T900,100" stroke="rgba(16,185,129,0.1)" stroke-width="2" fill="none"/><path d="M100,200 Q200,150 300,200 T500,200 T700,200 T900,200" stroke="rgba(59,130,246,0.1)" stroke-width="2" fill="none"/></svg>') repeat;
+            animation: mapFloat 25s linear infinite;
+        }
+
+        @keyframes mapFloat {
+            0% { transform: translateX(0) translateY(0); }
+            50% { transform: translateX(-50px) translateY(-25px); }
+            100% { transform: translateX(-100px) translateY(0); }
+        }
+
+        .interactive-map {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .map-container {
+            position: relative;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+        }
+
+        .map-points {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .map-point {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--sunrise-gold);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+        .map-point:hover {
+            transform: scale(1.5);
+            background: var(--rhododendron-pink);
+        }
+
+        .map-point::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid var(--sunrise-gold);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: ripple 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        .map-info {
+            padding: 2rem;
+        }
+
+        .map-location-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--sunrise-gold);
+            margin-bottom: 1rem;
+        }
+
+        .map-location-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .map-stat {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .map-stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--forest-green);
+            display: block;
+        }
+
+        .map-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* AI Chatbot Interface */
+        .chatbot-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .chatbot-toggle {
+            width: 70px;
+            height: 70px;
+            background: var(--forest-gradient);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-strong);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chatbot-toggle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--nepal-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .chatbot-toggle:hover::before {
+            opacity: 1;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chatbot-notification {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background: var(--nepal-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 90px;
+            right: 0;
+            width: 400px;
+            height: 600px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-strong);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.9);
+            transition: var(--transition);
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .chatbot-window.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .chatbot-header {
+            background: var(--forest-gradient);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .chatbot-avatar {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .chatbot-info h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .chatbot-status {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            background: var(--sunrise-gold);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .chatbot-messages {
+            height: 400px;
+            overflow-y: auto;
+            padding: 1.5rem;
+            background: #f8fafc;
+        }
+
+        .message {
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .message.bot .message-avatar {
+            background: var(--forest-gradient);
+            color: white;
+        }
+
+        .message.user .message-avatar {
+            background: var(--prayer-flag-blue);
+            color: white;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 1rem 1.25rem;
+            border-radius: 18px;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .message.bot .message-content {
+            background: white;
+            color: var(--dark-bg);
+            border-bottom-left-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .message.user .message-content {
+            background: var(--forest-gradient);
+            color: white;
+            border-bottom-right-radius: 6px;
+        }
+
+        .message-time {
+            font-size: 0.8rem;
+            opacity: 0.6;
+            margin-top: 0.5rem;
+        }
+
+        .chatbot-input {
+            padding: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 1rem 1.25rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .chatbot-input input:focus {
+            border-color: var(--forest-green);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .send-button {
+            width: 45px;
+            height: 45px;
+            background: var(--forest-gradient);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .send-button:hover {
+            transform: scale(1.1);
+        }
+
+        .send-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 0.25rem;
+            padding: 1rem 1.25rem;
+            background: white;
+            border-radius: 18px;
+            border-bottom-left-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--everest-gray);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .quick-action {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--forest-green);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quick-action:hover {
+            background: var(--forest-green);
+            color: white;
+        }
+
+        /* Advanced Data Visualization */
+        .analytics-section {
+            padding: 8rem 2rem;
+            background: white;
+            position: relative;
+        }
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .analytics-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .analytics-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--forest-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .analytics-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .analytics-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .analytics-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .analytics-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--dark-bg);
+        }
+
+        .analytics-period {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--forest-green);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .chart-container {
+            height: 300px;
+            position: relative;
+        }
+
+        /* Interactive Forms with Real-time Validation */
+        .form-section {
+            padding: 8rem 2rem;
+            background: var(--himalaya-gradient);
+            position: relative;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 4rem;
+            box-shadow: var(--shadow-strong);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--dark-bg);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1.25rem 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: white;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--forest-green);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .form-input.valid {
+            border-color: var(--forest-green);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .form-input.invalid {
+            border-color: var(--nepal-red);
+            background: rgba(220, 20, 60, 0.05);
+        }
+
+        .form-feedback {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: var(--transition);
+        }
+
+        .form-feedback.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .form-feedback.valid {
+            color: var(--forest-green);
+        }
+
+        .form-feedback.invalid {
+            color: var(--nepal-red);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1.5rem;
+            background: var(--forest-gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .form-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .form-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .form-submit:hover::before {
+            left: 100%;
+        }
+
+        /* Mobile Menu Enhancement */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+
+        /* Enhanced Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                border-radius: 0 0 var(--border-radius) var(--border-radius);
+                backdrop-filter: blur(20px);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .grid-container,
+            .grid-container-large,
+            .analytics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .interactive-map {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .timeline::before {
+                left: 2rem;
+            }
+
+            .milestone {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 4rem !important;
+                padding-right: 0 !important;
+            }
+
+            .milestone-card::before {
+                left: -3rem !important;
+                right: auto !important;
+            }
+
+            .chatbot-window {
+                width: 90vw;
+                height: 70vh;
+                right: 5vw;
+            }
+
+            .form-container {
+                padding: 2rem;
+                margin: 0 1rem;
+            }
+        }
+
+        /* Performance Optimizations */
+        .lazy-load {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .lazy-load.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Accessibility Enhancements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .focus-visible {
+            outline: 2px solid var(--forest-green);
+            outline-offset: 2px;
+        }
+
+        /* Print Styles */
+        @media print {
+            .chatbot-container,
+            .theme-toggle,
+            header,
+            .mobile-menu-btn,
+            .parallax-bg,
+            .hero-parallax-bg,
+            .timeline-parallax,
+            .map-parallax {
+                display: none !important;
+            }
+            
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .hero {
+                background: white !important;
+                color: black !important;
+                height: auto !important;
+                padding: 2rem !important;
+            }
+        }
+
+        /* Footer Enhancement */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 6rem 2rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-parallax {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon points="0,1000 200,800 400,900 600,700 800,850 1000,750 1000,1000" fill="rgba(16,185,129,0.05)"/></svg>') no-repeat center bottom;
+            background-size: cover;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-section h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--sunrise-gold);
+            font-family: var(--font-nepali);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-bottom: 1rem;
+            display: block;
+            transition: var(--transition);
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: var(--forest-green);
+            transform: translateX(8px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-creator {
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            opacity: 0.9;
+            font-family: var(--font-nepali);
+        }
+
+        .footer-creator strong {
+            color: var(--sunrise-gold);
+            font-weight: 700;
+        }
+
+        /* Back to Top Enhancement */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--forest-gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: var(--shadow-strong);
+        }
+    </style>
+</head>
+<body>
+    <!-- Advanced Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-prayer-flags"></div>
+        <div class="loading-content">
+            <div class="loading-logo">🏔️</div>
+            <div class="loading-text">नेपाल AI पहल</div>
+            <div class="loading-subtext">Nepal AI Initiative</div>
+            <div class="loading-progress">
+                <div class="loading-bar" id="loading-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Navigation -->
+    <header role="banner" id="header">
+        <nav role="navigation" aria-label="Main navigation">
+            <a href="#home" class="logo" aria-label="Nepal AI Initiative">
+                <span class="logo-icon">🏔️</span>
+                <span class="logo-text">Nepal AI</span>
+            </a>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="nav-menu">
+                ☰
+            </button>
+            
+            <ul id="nav-menu" role="menubar">
+                <li role="none"><a href="#home" role="menuitem" class="active">Home</a></li>
+                <li role="none"><a href="#features" role="menuitem">Features</a></li>
+                <li role="none"><a href="#timeline" role="menuitem">Timeline</a></li>
+                <li role="none"><a href="#map" role="menuitem">Explore</a></li>
+                <li role="none"><a href="#analytics" role="menuitem">Analytics</a></li>
+                <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
+                <li role="none">
+                    <button class="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                        🌙
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main role="main" id="main-content">
+        <!-- Immersive Parallax Hero Section -->
+        <section class="hero" id="home" aria-labelledby="hero-title">
+            <div class="hero-parallax-bg" id="hero-parallax"></div>
+            <div id="particles-js"></div>
+            <div class="hero-3d-container" id="hero-3d"></div>
+            
+            <div class="hero-content">
+                <h1 id="hero-title" data-aos="fade-up" data-aos-duration="1200">
+                    Nepal's AI Revolution Starts Here
+                </h1>
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1200">
+                    Experience the future of artificial intelligence in Nepal through immersive parallax design, 
+                    intelligent chatbot assistance, and personalized learning paths that transform how we explore AI innovation.
+                </p>
+                <p class="hero-nepali-text" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1200">
+                    कृत्रिम बुद्धिमत्ताको भविष्यमा नेपालको यात्रा
+                </p>
+                
+                <div class="hero-stats" data-aos="fade-up" data-aos-delay="900" data-aos-duration="1200">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number" data-target="150">0</span>
+                        <span class="hero-stat-label">AI Startups</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number" data-target="25000">0</span>
+                        <span class="hero-stat-label">Students</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number" data-target="45">0</span>
+                        <span class="hero-stat-label">Universities</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number" data-target="12">0</span>
+                        <span class="hero-stat-label">Research Centers</span>
+                    </div>
+                </div>
+                
+                <div class="cta-buttons" role="group" aria-label="Main action buttons" data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1200">
+                    <a href="#features" class="btn btn-primary">
+                        🚀 Explore AI Nepal
+                    </a>
+                    <a href="#" class="btn btn-secondary" onclick="openChatbot()">
+                        🤖 Chat with AI Assistant
+                    </a>
+                    <a href="#timeline" class="btn btn-secondary">
+                        📈 View Progress
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Features Section with Parallax -->
+        <section class="parallax-section" id="features">
+            <div class="parallax-bg" id="features-parallax"></div>
+            <div class="section-content">
+                <h2 class="section-title" data-aos="fade-up">
+                    Revolutionary AI Features
+                </h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+                    Experience cutting-edge technology designed specifically for Nepal's unique AI landscape, 
+                    featuring intelligent personalization, immersive visualizations, and culturally-aware interactions.
+                </p>
+                
+                <div class="grid-container">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <span class="feature-icon">🤖</span>
+                        <h3 class="feature-title">AI-Powered Chatbot</h3>
+                        <p class="feature-description">
+                            Intelligent assistant with natural language processing in Nepali and English. 
+                            Get personalized recommendations, navigate the platform, and access AI resources with context-aware conversations.
+                        </p>
+                        <button class="btn btn-primary" onclick="openChatbot()">
+                            Start Conversation
+                        </button>
+                    </div>
+                    
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <span class="feature-icon">🎨</span>
+                        <h3 class="feature-title">Immersive Parallax Design</h3>
+                        <p class="feature-description">
+                            Experience depth and motion with advanced parallax scrolling effects. 
+                            Explore AI sectors, historical milestones, and future projections through dynamic, engaging visual storytelling.
+                        </p>
+                        <button class="btn btn-primary" onclick="scrollToSection('timeline')">
+                            Experience Parallax
+                        </button>
+                    </div>
+                    
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <span class="feature-icon">🎯</span>
+                        <h3 class="feature-title">Adaptive Personalization</h3>
+                        <p class="feature-description">
+                            Smart content adaptation based on your interests, behavior, and learning preferences. 
+                            Receive tailored recommendations for healthcare, education, agriculture, or technology sectors.
+                        </p>
+                        <button class="btn btn-primary" onclick="showPersonalizationDemo()">
+                            Personalize Experience
+                        </button>
+                    </div>
+                    
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                        <span class="feature-icon">🗺️</span>
+                        <h3 class="feature-title">Interactive Nepal Map</h3>
+                        <p class="feature-description">
+                            Explore AI projects across Nepal with an interactive geographical visualization. 
+                            Discover startups, research centers, and innovation hubs from Kathmandu to remote regions.
+                        </p>
+                        <button class="btn btn-primary" onclick="scrollToSection('map')">
+                            Explore Map
+                        </button>
+                    </div>
+                    
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                        <span class="feature-icon">📊</span>
+                        <h3 class="feature-title">Real-time Analytics</h3>
+                        <p class="feature-description">
+                            Advanced data visualization dashboards with predictive AI models. 
+                            Filter by category, region, or timeframe to understand AI adoption and research impact in Nepal.
+                        </p>
+                        <button class="btn btn-primary" onclick="scrollToSection('analytics')">
+                            View Analytics
+                        </button>
+                    </div>
+                    
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                        <span class="feature-icon">🏔️</span>
+                        <h3 class="feature-title">Nepali Cultural Integration</h3>
+                        <p class="feature-description">
+                            Culturally-inspired design with traditional motifs, colors, and typography. 
+                            Experience AI innovation through the lens of Nepal's rich heritage and local identity.
+                        </p>
+                        <button class="btn btn-primary" onclick="showCulturalFeatures()">
+                            Discover Culture
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Timeline with Parallax -->
+        <section class="timeline-section" id="timeline">
+            <div class="timeline-parallax"></div>
+            <div class="section-content">
+                <h2 class="section-title" data-aos="fade-up">
+                    Nepal's AI Journey
+                </h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+                    Discover the milestones, achievements, and future projections that define Nepal's artificial intelligence transformation.
+                </p>
+                
+                <div class="timeline">
+                    <div class="milestone" data-aos="fade-right" data-aos-delay="100">
+                        <div class="milestone-card">
+                            <div class="milestone-year">2018</div>
+                            <h3 class="milestone-title">AI Foundation Era</h3>
+                            <p class="milestone-description">
+                                First AI research initiatives launched at major Nepali universities. 
+                                Establishment of computer science programs with AI focus and initial government recognition of AI potential.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone" data-aos="fade-left" data-aos-delay="200">
+                        <div class="milestone-card">
+                            <div class="milestone-year">2020</div>
+                            <h3 class="milestone-title">Healthcare AI Breakthrough</h3>
+                            <p class="milestone-description">
+                                COVID-19 pandemic accelerated AI adoption in healthcare. 
+                                Development of diagnostic tools, telemedicine platforms, and health monitoring systems for rural areas.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone" data-aos="fade-right" data-aos-delay="300">
+                        <div class="milestone-card">
+                            <div class="milestone-year">2022</div>
+                            <h3 class="milestone-title">Agricultural AI Revolution</h3>
+                            <p class="milestone-description">
+                                Smart farming solutions using satellite imagery and IoT sensors. 
+                                Precision agriculture tools helping farmers optimize crop yields and reduce resource waste.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone" data-aos="fade-left" data-aos-delay="400">
+                        <div class="milestone-card">
+                            <div class="milestone-year">2024</div>
+                            <h3 class="milestone-title">AI Startup Ecosystem</h3>
+                            <p class="milestone-description">
+                                Thriving startup ecosystem with 150+ AI companies. 
+                                Government support programs, international partnerships, and venture capital investments driving innovation.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone" data-aos="fade-right" data-aos-delay="500">
+                        <div class="milestone-card">
+                            <div class="milestone-year">2026</div>
+                            <h3 class="milestone-title">National AI Strategy</h3>
+                            <p class="milestone-description">
+                                Comprehensive national AI policy framework. 
+                                Integration of AI across government services, education system, and public infrastructure development.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone" data-aos="fade-left" data-aos-delay="600">
+                        <div class="milestone-card">
+                            <div class="milestone-year">2030</div>
+                            <h3 class="milestone-title">AI-Powered Nepal</h3>
+                            <p class="milestone-description">
+                                Vision of Nepal as a regional AI hub. 
+                                Advanced AI applications in tourism, disaster management, and sustainable development achieving global recognition.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Map Section -->
+        <section class="map-section" id="map">
+            <div class="map-parallax"></div>
+            <div class="section-content">
+                <h2 class="section-title" data-aos="fade-up" style="color: white;">
+                    Explore AI Across Nepal
+                </h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200" style="color: rgba(255, 255, 255, 0.8);">
+                    Interactive geographical visualization of AI projects, startups, research centers, and innovation hubs across Nepal's diverse regions.
+                </p>
+                
+                <div class="interactive-map" data-aos="fade-up" data-aos-delay="400">
+                    <div class="map-container">
+                        <div class="map-points">
+                            <div class="map-point" style="top: 35%; left: 45%;" onclick="showMapLocation('kathmandu')" data-location="kathmandu"></div>
+                            <div class="map-point" style="top: 45%; left: 35%;" onclick="showMapLocation('pokhara')" data-location="pokhara"></div>
+                            <div class="map-point" style="top: 55%; left: 50%;" onclick="showMapLocation('chitwan')" data-location="chitwan"></div>
+                            <div class="map-point" style="top: 40%; left: 70%;" onclick="showMapLocation('biratnagar')" data-location="biratnagar"></div>
+                            <div class="map-point" style="top: 25%; left: 25%;" onclick="showMapLocation('dhangadhi')" data-location="dhangadhi"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="map-info">
+                        <h3 class="map-location-title" id="map-location-title">
+                            Select a location to explore
+                        </h3>
+                        <p id="map-location-description" style="color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem;">
+                            Click on the glowing points to discover AI initiatives across Nepal's regions.
+                        </p>
+                        
+                        <div class="map-location-stats" id="map-location-stats">
+                            <div class="map-stat">
+                                <span class="map-stat-number">--</span>
+                                <span class="map-stat-label">AI Projects</span>
+                            </div>
+                            <div class="map-stat">
+                                <span class="map-stat-number">--</span>
+                                <span class="map-stat-label">Startups</span>
+                            </div>
+                            <div class="map-stat">
+                                <span class="map-stat-number">--</span>
+                                <span class="map-stat-label">Researchers</span>
+                            </div>
+                            <div class="map-stat">
+                                <span class="map-stat-number">--</span>
+                                <span class="map-stat-label">Investment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Analytics Dashboard -->
+        <section class="analytics-section" id="analytics">
+            <div class="section-content">
+                <h2 class="section-title" data-aos="fade-up">
+                    Real-Time AI Analytics
+                </h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+                    Comprehensive data visualization and predictive insights into Nepal's AI transformation across sectors, regions, and time periods.
+                </p>
+                
+                <div class="analytics-grid">
+                    <div class="analytics-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="analytics-header">
+                            <h3 class="analytics-title">AI Investment Growth</h3>
+                            <span class="analytics-period">2024 Trends</span>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="investmentChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="analytics-header">
+                            <h3 class="analytics-title">Sector Distribution</h3>
+                            <span class="analytics-period">Current Status</span>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="sectorChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="analytics-header">
+                            <h3 class="analytics-title">Regional AI Hubs</h3>
+                            <span class="analytics-period">Geographic Analysis</span>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="regionalChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="analytics-header">
+                            <h3 class="analytics-title">Future Projections</h3>
+                            <span class="analytics-period">2024-2030</span>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="projectionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Contact Form -->
+        <section class="form-section" id="contact">
+            <div class="section-content">
+                <h2 class="section-title" data-aos="fade-up">
+                    Join Nepal's AI Future
+                </h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+                    Connect with us to be part of Nepal's AI transformation. Get updates, resources, and opportunities delivered to your inbox.
+                </p>
+                
+                <div class="form-container" data-aos="fade-up" data-aos-delay="400">
+                    <form id="contact-form" novalidate>
+                        <div class="form-group">
+                            <label for="name" class="form-label">Full Name *</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                            <div class="form-feedback" id="name-feedback"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                            <div class="form-feedback" id="email-feedback"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interest" class="form-label">Primary Interest</label>
+                            <select id="interest" name="interest" class="form-input">
+                                <option value="">Select your interest</option>
+                                <option value="healthcare">Healthcare AI</option>
+                                <option value="education">Education Technology</option>
+                                <option value="agriculture">Smart Agriculture</option>
+                                <option value="business">AI Business</option>
+                                <option value="research">Research & Development</option>
+                                <option value="government">Government AI</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-input" rows="5" placeholder="Tell us about your AI interests or questions..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="form-submit" id="submit-btn">
+                            🚀 Join the AI Revolution
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- AI Chatbot Interface -->
+    <div class="chatbot-container">
+        <button class="chatbot-toggle" onclick="toggleChatbot()" aria-label="Open AI Assistant">
+            🤖
+            <div class="chatbot-notification" id="chatbot-notification">1</div>
+        </button>
+        
+        <div class="chatbot-window" id="chatbot-window">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">🤖</div>
+                <div class="chatbot-info">
+                    <h3>AI Assistant</h3>
+                    <div class="chatbot-status">
+                        <div class="status-indicator"></div>
+                        <span>Online - Ready to help</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="message bot">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        <p>नमस्ते! Welcome to Nepal AI Initiative! I'm your intelligent assistant, ready to help you explore Nepal's AI landscape.</p>
+                        <p>I can help you with:</p>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                            <li>Finding AI resources and opportunities</li>
+                            <li>Navigating the platform</li>
+                            <li>Answering questions about AI in Nepal</li>
+                            <li>Providing personalized recommendations</li>
+                        </ul>
+                        <div class="message-time">Just now</div>
+                    </div>
+                </div>
+                
+                <div class="quick-actions">
+                    <div class="quick-action" onclick="sendQuickMessage('Tell me about AI in healthcare')">Healthcare AI</div>
+                    <div class="quick-action" onclick="sendQuickMessage('Show me AI startups')">AI Startups</div>
+                    <div class="quick-action" onclick="sendQuickMessage('Learning resources')">Learn AI</div>
+                    <div class="quick-action" onclick="sendQuickMessage('Government AI initiatives')">Gov AI</div>
+                </div>
+            </div>
+            
+            <div class="chatbot-input">
+                <div class="input-container">
+                    <input type="text" id="chatbot-input" placeholder="Type your message... (English/नेपाली)" maxlength="500">
+                    <button class="send-button" onclick="sendMessage()" id="send-button">
+                        ➤
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-parallax"></div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>नेपाल AI पहल</h3>
+                <p>Pioneering the future of artificial intelligence in Nepal through innovation, education, and cultural integration.</p>
+                <p>Experience immersive parallax design, intelligent chatbot assistance, and personalized learning paths that showcase Nepal's AI potential.</p>
+                <p style="margin-top: 2rem; font-style: italic; color: var(--sunrise-gold);">
+                    "Technology with Nepali heart, innovation with global impact"
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Advanced Features</h3>
+                <a href="#features">AI-Powered Chatbot</a>
+                <a href="#features">Parallax Scrolling</a>
+                <a href="#features">Adaptive Personalization</a>
+                <a href="#map">Interactive Nepal Map</a>
+                <a href="#analytics">Real-time Analytics</a>
+                <a href="#timeline">AI Timeline</a>
+            </div>
+            <div class="footer-section">
+                <h3>AI Resources</h3>
+                <a href="#">Research Papers</a>
+                <a href="#">Interactive Tutorials</a>
+                <a href="#">Industry Reports</a>
+                <a href="#">AI Tools & APIs</a>
+                <a href="#">Developer Resources</a>
+                <a href="#">Cultural AI Integration</a>
+            </div>
+            <div class="footer-section">
+                <h3>Community</h3>
+                <a href="#">Discussion Forums</a>
+                <a href="#">Live AI Events</a>
+                <a href="#">Mentorship Program</a>
+                <a href="#">Collaboration Projects</a>
+                <a href="#">Newsletter</a>
+                <a href="#">Cultural Exchange</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year"></span> Nepal AI Initiative. All rights reserved. Transforming Nepal through AI innovation.</p>
+            <p class="footer-creator">
+                Website conceptualized, designed, and developed by <strong>Gaurav Khadka</strong><br>
+                <em>Bridging technology and culture for Nepal's AI future</em>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" onclick="scrollToTop()" aria-label="Back to top">
+        ↑
+    </button>
+
+    <script>
+        // Advanced Nepal AI Application
+        class NepalAIApp {
+            constructor() {
+                this.isDarkMode = false;
+                this.isChatbotOpen = false;
+                this.userPreferences = this.loadUserPreferences();
+                this.chatHistory = [];
+                this.isTyping = false;
+                this.currentMapLocation = null;
+                this.parallaxElements = [];
+                this.init();
+            }
+
+            init() {
+                this.initializeComponents();
+                this.setupEventListeners();
+                this.startLoadingSequence();
+                this.initializeParallax();
+                this.initializeAnimations();
+                this.initializeCharts();
+                this.initializeChatbot();
+                this.initializeFormValidation();
+            }
+
+            loadUserPreferences() {
+                const saved = localStorage.getItem('nepal_ai_preferences');
+                return saved ? JSON.parse(saved) : {
+                    theme: 'light',
+                    language: 'en',
+                    interests: [],
+                    visitCount: 0
+                };
+            }
+
+            saveUserPreferences() {
+                localStorage.setItem('nepal_ai_preferences', JSON.stringify(this.userPreferences));
+            }
+
+            initializeComponents() {
+                // Initialize particles
+                if (typeof particlesJS !== 'undefined') {
+                    particlesJS('particles-js', {
+                        particles: {
+                            number: { value: 100, density: { enable: true, value_area: 800 } },
+                            color: { value: ['#10b981', '#3b82f6', '#f59e0b', '#dc143c'] },
+                            shape: { type: 'circle' },
+                            opacity: { value: 0.6, random: true },
+                            size: { value: 3, random: true },
+                            line_linked: {
+                                enable: true,
+                                distance: 150,
+                                color: '#10b981',
+                                opacity: 0.4,
+                                width: 1
+                            },
+                            move: {
+                                enable: true,
+                                speed: 2,
+                                direction: 'none',
+                                random: true,
+                                straight: false,
+                                out_mode: 'out',
+                                bounce: false
+                            }
+                        },
+                        interactivity: {
+                            detect_on: 'canvas',
+                            events: {
+                                onhover: { enable: true, mode: 'repulse' },
+                                onclick: { enable: true, mode: 'push' },
+                                resize: true
+                            }
+                        },
+                        retina_detect: true
+                    });
+                }
+
+                // Initialize 3D Hero
+                this.init3DHero();
+            }
+
+            init3DHero() {
+                if (typeof THREE === 'undefined') return;
+
+                const container = document.getElementById('hero-3d');
+                if (!container) return;
+
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, container.offsetWidth / container.offsetHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                
+                renderer.setSize(container.offsetWidth, container.offsetHeight);
+                renderer.setClearColor(0x000000, 0);
+                container.appendChild(renderer.domElement);
+
+                // Create Nepal-inspired geometric shapes
+                const shapes = [];
+                const colors = [0x10b981, 0x3b82f6, 0xf59e0b, 0xdc143c];
+                
+                for (let i = 0; i < 8; i++) {
+                    const geometry = i % 2 === 0 ? 
+                        new THREE.IcosahedronGeometry(0.8, 0) : 
+                        new THREE.OctahedronGeometry(0.6, 0);
+                    
+                    const material = new THREE.MeshBasicMaterial({ 
+                        color: colors[i % colors.length], 
+                        wireframe: true,
+                        transparent: true,
+                        opacity: 0.7
+                    });
+
+                    const shape = new THREE.Mesh(geometry, material);
+                    shape.position.set(
+                        (Math.random() - 0.5) * 12,
+                        (Math.random() - 0.5) * 8,
+                        (Math.random() - 0.5) * 8
+                    );
+                    shape.rotation.set(
+                        Math.random() * Math.PI,
+                        Math.random() * Math.PI,
+                        Math.random() * Math.PI
+                    );
+                    scene.add(shape);
+                    shapes.push(shape);
+                }
+
+                camera.position.z = 10;
+
+                const animate = () => {
+                    requestAnimationFrame(animate);
+                    
+                    shapes.forEach((shape, index) => {
+                        shape.rotation.x += 0.003 + index * 0.001;
+                        shape.rotation.y += 0.004 + index * 0.001;
+                        shape.position.y += Math.sin(Date.now() * 0.001 + index) * 0.008;
+                        shape.position.x += Math.cos(Date.now() * 0.0008 + index) * 0.005;
+                    });
+                    
+                    renderer.render(scene, camera);
+                };
+                
+                animate();
+                this.hero3D = { scene, camera, renderer, shapes };
+            }
+
+            setupEventListeners() {
+                // Scroll events with throttling
+                let scrollTimeout;
+                window.addEventListener('scroll', () => {
+                    if (scrollTimeout) return;
+                    scrollTimeout = setTimeout(() => {
+                        this.handleScroll();
+                        scrollTimeout = null;
+                    }, 16);
+                }, { passive: true });
+
+                // Resize events
+                window.addEventListener('resize', this.debounce(() => {
+                    this.handleResize();
+                }, 250));
+
+                // Keyboard shortcuts
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.isChatbotOpen) {
+                        this.toggleChatbot();
+                    }
+                    if (e.ctrlKey && e.key === 'k') {
+                        e.preventDefault();
+                        this.toggleChatbot();
+                    }
+                });
+
+                // Chatbot input
+                const chatInput = document.getElementById('chatbot-input');
+                if (chatInput) {
+                    chatInput.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') {
+                            this.sendMessage();
+                        }
+                    });
+                }
+            }
+
+            startLoadingSequence() {
+                const loadingScreen = document.getElementById('loading-screen');
+                const loadingBar = document.getElementById('loading-bar');
+                
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 12 + 3;
+                    if (progress >= 100) {
+                        progress = 100;
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            loadingScreen.classList.add('hidden');
+                            this.startHeroAnimations();
+                            this.showWelcomeMessage();
+                        }, 800);
+                    }
+                    loadingBar.style.width = progress + '%';
+                }, 150);
+            }
+
+            initializeParallax() {
+                // Hero parallax
+                const heroParallax = document.getElementById('hero-parallax');
+                if (heroParallax) {
+                    this.parallaxElements.push({
+                        element: heroParallax,
+                        speed: 0.3
+                    });
+                }
+
+                // Features parallax
+                const featuresParallax = document.getElementById('features-parallax');
+                if (featuresParallax) {
+                    featuresParallax.style.background = `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="grad1" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:rgba(16,185,129,0.1);stop-opacity:1" /><stop offset="100%" style="stop-color:rgba(16,185,129,0);stop-opacity:0" /></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23grad1)"/><circle cx="600" cy="400" r="80" fill="url(%23grad1)"/><circle cx="800" cy="600" r="120" fill="url(%23grad1)"/></svg>') repeat`;
+                    this.parallaxElements.push({
+                        element: featuresParallax,
+                        speed: 0.4
+                    });
+                }
+            }
+
+            initializeAnimations() {
+                if (typeof AOS !== 'undefined') {
+                    AOS.init({
+                        duration: 1200,
+                        easing: 'ease-out-cubic',
+                        once: true,
+                        offset: 100
+                    });
+                }
+
+                // GSAP animations
+                if (typeof gsap !== 'undefined') {
+                    gsap.registerPlugin(ScrollTrigger);
+                    
+                    // Parallax scrolling
+                    this.parallaxElements.forEach(item => {
+                        gsap.to(item.element, {
+                            yPercent: -50 * item.speed,
+                            ease: "none",
+                            scrollTrigger: {
+                                trigger: item.element.parentElement,
+                                start: "top bottom",
+                                end: "bottom top",
+                                scrub: true
+                            }
+                        });
+                    });
+                }
+            }
+
+            initializeCharts() {
+                if (typeof Chart === 'undefined') return;
+
+                // Investment Chart
+                const investmentCtx = document.getElementById('investmentChart');
+                if (investmentCtx) {
+                    new Chart(investmentCtx, {
+                        type: 'line',
+                        data: {
+                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            datasets: [{
+                                label: 'Investment (Million USD)',
+                                data: [2.1, 3.2, 2.8, 4.1, 5.2, 4.8, 6.1, 5.9, 7.2, 6.8, 8.1, 9.2],
+                                borderColor: '#10b981',
+                                backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                                tension: 0.4,
+                                fill: true,
+                                pointBackgroundColor: '#10b981',
+                                pointBorderColor: '#ffffff',
+                                pointBorderWidth: 2,
+                                pointRadius: 6
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false }
+                            },
+                            scales: {
+                                y: { 
+                                    beginAtZero: true,
+                                    grid: { color: 'rgba(0,0,0,0.1)' }
+                                },
+                                x: {
+                                    grid: { color: 'rgba(0,0,0,0.1)' }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // Sector Chart
+                const sectorCtx = document.getElementById('sectorChart');
+                if (sectorCtx) {
+                    new Chart(sectorCtx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Healthcare', 'Education', 'Agriculture', 'Energy', 'Government', 'Tourism'],
+                            datasets: [{
+                                data: [28, 22, 18, 12, 10, 10],
+                                backgroundColor: [
+                                    '#10b981', '#3b82f6', '#f59e0b', 
+                                    '#ef4444', '#8b5cf6', '#06b6d4'
+                                ],
+                                borderWidth: 0
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+                                        padding: 20,
+                                        usePointStyle: true
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // Regional Chart
+                const regionalCtx = document.getElementById('regionalChart');
+                if (regionalCtx) {
+                    new Chart(regionalCtx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Kathmandu', 'Pokhara', 'Chitwan', 'Biratnagar', 'Dhangadhi'],
+                            datasets: [{
+                                label: 'AI Projects',
+                                data: [65, 28, 18, 12, 8],
+                                backgroundColor: [
+                                    '#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6'
+                                ],
+                                borderRadius: 8
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false }
+                            },
+                            scales: {
+                                y: { 
+                                    beginAtZero: true,
+                                    grid: { color: 'rgba(0,0,0,0.1)' }
+                                },
+                                x: {
+                                    grid: { display: false }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // Projection Chart
+                const projectionCtx = document.getElementById('projectionChart');
+                if (projectionCtx) {
+                    new Chart(projectionCtx, {
+                        type: 'line',
+                        data: {
+                            labels: ['2024', '2025', '2026', '2027', '2028', '2029', '2030'],
+                            datasets: [{
+                                label: 'Projected Market Size (Million USD)',
+                                data: [45, 68, 95, 142, 198, 267, 350],
+                                borderColor: '#dc143c',
+                                backgroundColor: 'rgba(220, 20, 60, 0.1)',
+                                tension: 0.4,
+                                fill: true,
+                                pointBackgroundColor: '#dc143c',
+                                pointBorderColor: '#ffffff',
+                                pointBorderWidth: 2,
+                                pointRadius: 6
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false }
+                            },
+                            scales: {
+                                y: { 
+                                    beginAtZero: true,
+                                    grid: { color: 'rgba(0,0,0,0.1)' }
+                                },
+                                x: {
+                                    grid: { color: 'rgba(0,0,0,0.1)' }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+
+            initializeChatbot() {
+                // Initialize chatbot with welcome message
+                this.chatHistory = [
+                    {
+                        type: 'bot',
+                        message: 'नमस्ते! Welcome to Nepal AI Initiative! How can I help you explore Nepal\'s AI landscape today?',
+                        timestamp: new Date()
+                    }
+                ];
+            }
+
+            initializeFormValidation() {
+                const form = document.getElementById('contact-form');
+                if (!form) return;
+
+                const inputs = form.querySelectorAll('.form-input');
+                inputs.forEach(input => {
+                    input.addEventListener('blur', () => this.validateField(input));
+                    input.addEventListener('input', () => this.validateField(input, true));
+                });
+
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.handleFormSubmit(form);
+                });
+            }
+
+            validateField(field, isRealTime = false) {
+                const value = field.value.trim();
+                const fieldName = field.name;
+                const feedback = document.getElementById(`${fieldName}-feedback`);
+                
+                let isValid = true;
+                let message = '';
+
+                switch (fieldName) {
+                    case 'name':
+                        if (!value) {
+                            isValid = false;
+                            message = 'Name is required';
+                        } else if (value.length < 2) {
+                            isValid = false;
+                            message = 'Name must be at least 2 characters';
+                        } else {
+                            message = 'Looks good!';
+                        }
+                        break;
+                    
+                    case 'email':
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!value) {
+                            isValid = false;
+                            message = 'Email is required';
+                        } else if (!emailRegex.test(value)) {
+                            isValid = false;
+                            message = 'Please enter a valid email address';
+                        } else {
+                            message = 'Valid email address!';
+                        }
+                        break;
+                }
+
+                if (feedback) {
+                    feedback.textContent = message;
+                    feedback.className = `form-feedback ${isValid ? 'valid' : 'invalid'} show`;
+                }
+
+                field.className = `form-input ${isValid ? 'valid' : 'invalid'}`;
+                return isValid;
+            }
+
+            handleFormSubmit(form) {
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData);
+                
+                // Validate all fields
+                const inputs = form.querySelectorAll('.form-input[required]');
+                let isFormValid = true;
+                
+                inputs.forEach(input => {
+                    if (!this.validateField(input)) {
+                        isFormValid = false;
+                    }
+                });
+
+                if (isFormValid) {
+                    const submitBtn = document.getElementById('submit-btn');
+                    submitBtn.textContent = '🚀 Sending...';
+                    submitBtn.disabled = true;
+
+                    // Simulate form submission
+                    setTimeout(() => {
+                        submitBtn.textContent = '✅ Thank You!';
+                        form.reset();
+                        
+                        // Add to chatbot
+                        this.addChatMessage('bot', `Thank you ${data.name}! I've received your message about ${data.interest || 'AI in Nepal'}. Our team will get back to you soon. In the meantime, feel free to explore our AI resources!`);
+                        
+                        setTimeout(() => {
+                            submitBtn.textContent = '🚀 Join the AI Revolution';
+                            submitBtn.disabled = false;
+                        }, 3000);
+                    }, 2000);
+                }
+            }
+
+            toggleChatbot() {
+                this.isChatbotOpen = !this.isChatbotOpen;
+                const chatbotWindow = document.getElementById('chatbot-window');
+                const notification = document.getElementById('chatbot-notification');
+                
+                if (this.isChatbotOpen) {
+                    chatbotWindow.classList.add('active');
+                    notification.style.display = 'none';
+                    document.getElementById('chatbot-input').focus();
+                } else {
+                    chatbotWindow.classList.remove('active');
+                }
+            }
+
+            sendMessage() {
+                const input = document.getElementById('chatbot-input');
+                const message = input.value.trim();
+                
+                if (!message || this.isTyping) return;
+
+                this.addChatMessage('user', message);
+                input.value = '';
+                
+                this.showTypingIndicator();
+                setTimeout(() => {
+                    this.hideTypingIndicator();
+                    this.generateBotResponse(message);
+                }, 1500 + Math.random() * 1000);
+            }
+
+            sendQuickMessage(message) {
+                this.addChatMessage('user', message);
+                this.showTypingIndicator();
+                setTimeout(() => {
+                    this.hideTypingIndicator();
+                    this.generateBotResponse(message);
+                }, 1000);
+            }
+
+            addChatMessage(type, message) {
+                const messagesContainer = document.getElementById('chatbot-messages');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${type}`;
+                
+                const avatar = document.createElement('div');
+                avatar.className = 'message-avatar';
+                avatar.textContent = type === 'bot' ? '🤖' : '👤';
+                
+                const content = document.createElement('div');
+                content.className = 'message-content';
+                content.innerHTML = `<p>${message}</p><div class="message-time">${new Date().toLocaleTimeString()}</div>`;
+                
+                messageDiv.appendChild(avatar);
+                messageDiv.appendChild(content);
+                messagesContainer.appendChild(messageDiv);
+                
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                this.chatHistory.push({
+                    type,
+                    message,
+                    timestamp: new Date()
+                });
+            }
+
+            showTypingIndicator() {
+                this.isTyping = true;
+                const messagesContainer = document.getElementById('chatbot-messages');
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'message bot';
+                typingDiv.id = 'typing-indicator';
+                
+                typingDiv.innerHTML = `
+                    <div class="message-avatar">🤖</div>
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                `;
+                
+                messagesContainer.appendChild(typingDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+
+            hideTypingIndicator() {
+                this.isTyping = false;
+                const typingIndicator = document.getElementById('typing-indicator');
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+            }
+
+            generateBotResponse(userMessage) {
+                const lowerMessage = userMessage.toLowerCase();
+                let response = '';
+
+                if (lowerMessage.includes('healthcare') || lowerMessage.includes('health')) {
+                    response = `🏥 Nepal's healthcare AI is revolutionizing medical services! We have ${Math.floor(Math.random() * 20 + 30)} active healthcare AI projects focusing on:
+
+• Telemedicine for remote areas
+• AI-powered diagnostic tools
+• Health monitoring systems
+• Medical image analysis
+
+Would you like to explore specific healthcare AI initiatives or connect with medical AI researchers?`;
+                } else if (lowerMessage.includes('startup') || lowerMessage.includes('business')) {
+                    response = `💼 Nepal's AI startup ecosystem is thriving! Currently, we have:
+
+• 150+ AI startups across various sectors
+• $45M+ in total AI investments
+• 12 major incubators supporting AI ventures
+• Government support programs
+
+Popular sectors include healthcare, agriculture, education, and fintech. Would you like information about specific startups or investment opportunities?`;
+                } else if (lowerMessage.includes('learn') || lowerMessage.includes('education') || lowerMessage.includes('course')) {
+                    response = `🎓 Excellent! Nepal offers diverse AI learning opportunities:
+
+**Universities with AI Programs:**
+• Tribhuvan University - AI Research Center
+• Kathmandu University - Computer Science
+• Pokhara University - Data Science
+
+**Online Resources:**
+• Nepal AI Learning Platform
+• Free AI courses in Nepali
+• Hands-on workshops and bootcamps
+
+**Skill Development:**
+• Python programming
+• Machine learning fundamentals
+• Deep learning applications
+
+Which area interests you most? I can provide specific recommendations!`;
+                } else if (lowerMessage.includes('government') || lowerMessage.includes('policy')) {
+                    response = `🏛️ Nepal's government is actively promoting AI development:
+
+**Current Initiatives:**
+• National AI Strategy 2024-2030
+• Digital Nepal Framework
+• AI in public services pilot projects
+• Smart city initiatives in major urban areas
+
+**Focus Areas:**
+• E-governance and citizen services
+• Agricultural technology
+• Disaster management systems
+• Healthcare digitization
+
+The government has allocated NPR 2.5 billion for AI and digital transformation. Would you like details about specific government AI projects?`;
+                } else if (lowerMessage.includes('agriculture') || lowerMessage.includes('farming')) {
+                    response = `🌾 Smart agriculture is transforming Nepal's farming:
+
+**AI Applications:**
+• Crop monitoring using satellite imagery
+• Weather prediction and climate analysis
+• Soil health assessment
+• Pest and disease detection
+• Precision irrigation systems
+
+**Success Stories:**
+• 40% increase in crop yields in pilot areas
+• 30% reduction in water usage
+• Early warning systems for farmers
+
+**Current Projects:**
+• Smart farming in Chitwan
+• Drone-based crop monitoring
+• AI-powered market price prediction
+
+Interested in specific agricultural AI solutions or farmer success stories?`;
+                } else if (lowerMessage.includes('map') || lowerMessage.includes('location') || lowerMessage.includes('region')) {
+                    response = `🗺️ Explore AI across Nepal's regions:
+
+**Major AI Hubs:**
+• Kathmandu Valley - 65 projects (Tech & Research)
+• Pokhara - 28 projects (Tourism & Education)
+• Chitwan - 18 projects (Agriculture & Conservation)
+• Biratnagar - 12 projects (Industry & Trade)
+• Dhangadhi - 8 projects (Rural Innovation)
+
+Click on the interactive map above to explore specific locations! Each region has unique AI applications suited to local needs and opportunities.
+
+Which region interests you most?`;
+                } else if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('namaste')) {
+                    response = `नमस्ते! 🙏 Welcome to Nepal's AI future! I'm here to help you discover:
+
+• AI opportunities across Nepal
+• Learning resources and courses
+• Startup ecosystem and investments
+• Government initiatives and policies
+• Regional AI projects and success stories
+
+What aspect of Nepal's AI landscape would you like to explore first?`;
+                } else {
+                    response = `Thank you for your question! 🤔 I understand you're interested in "${userMessage}".
+
+I can help you with:
+• AI in healthcare, education, agriculture
+• Startup ecosystem and opportunities
+• Learning resources and courses
+• Government AI initiatives
+• Regional AI projects across Nepal
+
+Could you be more specific about what you'd like to know? Or try one of the quick action buttons below!`;
+                }
+
+                this.addChatMessage('bot', response);
+            }
+
+            showWelcomeMessage() {
+                if (this.userPreferences.visitCount === 0) {
+                    setTimeout(() => {
+                        const notification = document.getElementById('chatbot-notification');
+                        notification.style.display = 'flex';
+                        notification.textContent = '!';
+                        
+                        // Auto-open chatbot for first-time visitors
+                        setTimeout(() => {
+                            this.toggleChatbot();
+                        }, 3000);
+                    }, 2000);
+                }
+                
+                this.userPreferences.visitCount++;
+                this.saveUserPreferences();
+            }
+
+            showMapLocation(locationId) {
+                const locations = {
+                    kathmandu: {
+                        title: 'Kathmandu Valley',
+                        description: 'Nepal\'s AI capital with the highest concentration of tech companies, research institutions, and government initiatives.',
+                        projects: 65,
+                        startups: 45,
+                        researchers: 280,
+                        investment: '$12.5M'
+                    },
+                    pokhara: {
+                        title: 'Pokhara',
+                        description: 'Growing AI hub focusing on tourism technology, education, and sustainable development solutions.',
+                        projects: 28,
+                        startups: 18,
+                        researchers: 95,
+                        investment: '$3.2M'
+                    },
+                    chitwan: {
+                        title: 'Chitwan',
+                        description: 'Agricultural AI center specializing in smart farming, conservation technology, and rural innovation.',
+                        projects: 18,
+                        startups: 12,
+                        researchers: 65,
+                        investment: '$2.1M'
+                    },
+                    biratnagar: {
+                        title: 'Biratnagar',
+                        description: 'Industrial AI applications focusing on manufacturing, trade, and cross-border technology solutions.',
+                        projects: 12,
+                        startups: 8,
+                        researchers: 45,
+                        investment: '$1.8M'
+                    },
+                    dhangadhi: {
+                        title: 'Dhangadhi',
+                        description: 'Emerging AI center for rural innovation, agricultural technology, and community-based solutions.',
+                        projects: 8,
+                        startups: 5,
+                        researchers: 25,
+                        investment: '$0.9M'
+                    }
+                };
+
+                const location = locations[locationId];
+                if (!location) return;
+
+                document.getElementById('map-location-title').textContent = location.title;
+                document.getElementById('map-location-description').textContent = location.description;
+
+                const stats = document.querySelectorAll('.map-stat-number');
+                stats[0].textContent = location.projects;
+                stats[1].textContent = location.startups;
+                stats[2].textContent = location.researchers;
+                stats[3].textContent = location.investment;
+
+                this.currentMapLocation = locationId;
+            }
+
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                document.body.classList.toggle('dark-mode', this.isDarkMode);
+                
+                const themeToggle = document.querySelector('.theme-toggle');
+                themeToggle.textContent = this.isDarkMode ? '☀️' : '🌙';
+                
+                this.userPreferences.theme = this.isDarkMode ? 'dark' : 'light';
+                this.saveUserPreferences();
+            }
+
+            scrollToSection(sectionId) {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                    this.updateActiveNavigation(sectionId);
+                }
+            }
+
+            updateActiveNavigation(activeId) {
+                document.querySelectorAll('nav a').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${activeId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            startHeroAnimations() {
+                // Animate hero stats
+                document.querySelectorAll('.hero-stat-number').forEach(stat => {
+                    const target = parseInt(stat.getAttribute('data-target'));
+                    this.animateCounter(stat, 0, target, 2500);
+                });
+            }
+
+            animateCounter(element, start, end, duration) {
+                const startTime = performance.now();
+                const update = (currentTime) => {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const current = Math.floor(start + (end - start) * this.easeOutCubic(progress));
+                    
+                    element.textContent = current.toLocaleString();
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(update);
+                    }
+                };
+                requestAnimationFrame(update);
+            }
+
+            easeOutCubic(t) {
+                return 1 - Math.pow(1 - t, 3);
+            }
+
+            handleScroll() {
+                const scrollY = window.scrollY;
+                const header = document.getElementById('header');
+                const backToTop = document.getElementById('back-to-top');
+
+                // Update header
+                if (scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                // Show/hide back to top
+                if (scrollY > 500) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+
+                // Update active navigation
+                const sections = document.querySelectorAll('section[id]');
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 100 && rect.bottom >= 100) {
+                        this.updateActiveNavigation(section.id);
+                    }
+                });
+
+                // Parallax effects
+                this.parallaxElements.forEach(item => {
+                    const rect = item.element.getBoundingClientRect();
+                    const speed = item.speed;
+                    const yPos = -(scrollY * speed);
+                    item.element.style.transform = `translateY(${yPos}px)`;
+                });
+            }
+
+            handleResize() {
+                if (this.hero3D) {
+                    const container = document.getElementById('hero-3d');
+                    this.hero3D.camera.aspect = container.offsetWidth / container.offsetHeight;
+                    this.hero3D.camera.updateProjectionMatrix();
+                    this.hero3D.renderer.setSize(container.offsetWidth, container.offsetHeight);
+                }
+            }
+
+            debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+        }
+
+        // Global Functions
+        function toggleMobileMenu() {
+            const menu = document.getElementById('nav-menu');
+            const button = document.querySelector('.mobile-menu-btn');
+            const isExpanded = menu.classList.contains('active');
+            
+            menu.classList.toggle('active');
+            button.setAttribute('aria-expanded', !isExpanded);
+            button.textContent = isExpanded ? '☰' : '✕';
+        }
+
+        function toggleDarkMode() {
+            app.toggleDarkMode();
+        }
+
+        function toggleChatbot() {
+            app.toggleChatbot();
+        }
+
+        function openChatbot() {
+            if (!app.isChatbotOpen) {
+                app.toggleChatbot();
+            }
+        }
+
+        function sendQuickMessage(message) {
+            app.sendQuickMessage(message);
+        }
+
+        function showMapLocation(locationId) {
+            app.showMapLocation(locationId);
+        }
+
+        function scrollToSection(sectionId) {
+            app.scrollToSection(sectionId);
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function showPersonalizationDemo() {
+            app.addChatMessage('bot', '🎯 Personalization features coming soon! I can already provide tailored recommendations based on your interests. What AI sector interests you most - healthcare, education, agriculture, or technology?');
+            if (!app.isChatbotOpen) {
+                app.toggleChatbot();
+            }
+        }
+
+        function showCulturalFeatures() {
+            app.addChatMessage('bot', '🏔️ Nepal AI Initiative celebrates our rich cultural heritage! Notice the traditional prayer flag colors, Himalayan-inspired design elements, and Nepali typography throughout the platform. We believe technology should honor and enhance our cultural identity. कृत्रिम बुद्धिमत्ता र संस्कृतिको मेल!');
+            if (!app.isChatbotOpen) {
+                app.toggleChatbot();
+            }
+        }
+
+        // Initialize Application
+        let app;
+        document.addEventListener('DOMContentLoaded', () => {
+            app = new NepalAIApp();
+            
+            // Set current year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9745f588d09a8e54',t:'MTc1NjA3MTExMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
